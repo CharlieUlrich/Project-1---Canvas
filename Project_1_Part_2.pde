@@ -3,7 +3,7 @@
 ArrayList<int[]> points = new ArrayList<int[]>();
 //Function called at the start of the progra, creates the canvas of size 1280x720
 void setup(){
-  size(1280,720);
+  size(250,250);
 }
 
 //Draw is called each time the screen is refreshed, the default framerate is 60fps
@@ -12,7 +12,7 @@ void draw(){
   //Sets the background of the window / canvas to white
   background(255);
   //Calls the draw button function creating a button that clears the canvas
-  drawButton(10, 10, 80, 60, "Clear");
+  drawButton(10, 10, 40, 20, "Clear");
   //Changes the color being drawn to green
   fill(0,255,0);
   //Loop that goes through the arrayList of pixels drawing a circle with a 1 pixel
@@ -29,7 +29,7 @@ void draw(){
 void mousePressed(){ 
    //If statement check if the coordinates of the mouse were over the clear button 
    //When pressed
-   if(mouseX >10 && mouseX < 90 && mouseY > 10 && mouseY < 70){
+   if(mouseX >10 && mouseX < 50 && mouseY > 10 && mouseY < 30){
      //If it was over the button it empties the arrayList
      points.removeAll(points);
    }
@@ -50,7 +50,7 @@ void mousePressed(){
 //As mouse clicked, except it doesn't clear the canvas / arrayList if the mouse is
 //Dragged over the mouse button, it only clears the canvas if the button is clicked
 void mouseDragged(){
-   if(!(mouseX >10 && mouseX < 90 && mouseY > 10 && mouseY < 70)){
+   if(!(mouseX >10 && mouseX < 50 && mouseY > 10 && mouseY < 30)){
    int[] a = new int[2];
    a[0] = mouseX;
    a[1] = mouseY;
@@ -106,7 +106,7 @@ void drawButton(int x, int y, int wid, int hei, String text) {
   //Sets the color of the button
   fill(color(142, 201, 237));
   //Sets the weight for the border of the button
-  strokeWeight(5);
+  strokeWeight(1);
   stroke(0);
   //The function draws a rectangle with the x, and y coordinates, as well as the
   //Width and height
@@ -114,7 +114,7 @@ void drawButton(int x, int y, int wid, int hei, String text) {
   //This sets the mode for the text to be centered on the coordinates
   textAlign(CENTER, CENTER);
   //Sets the text size 
-  textSize(26);
+  textSize(13);
   //Sets the color of the text to black
   fill(0);
   //Draws the text to the window with the passed in text, x, y, width and height
