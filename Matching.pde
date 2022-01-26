@@ -1,9 +1,10 @@
 //Matching Process
-Result Recognize(ArrayList<int[]> pts, ArrayList<Unistroke> templates){
+Result Recognize(ArrayList<double[]> pts, ArrayList<Unistroke> templates){
   double b = Double.POSITIVE_INFINITY;
   String name = "";
   for(int i = 0; i < templates.size(); i++){
-    double d = distAtBestAngle(pts,templates.get(i),-45,+45,2); // CONVERT -45 45 and 2 to Rads
+    System.out.println(i);
+    double d = distAtBestAngle(pts,templates.get(i),Deg2Rad(-45),Deg2Rad(+45),Deg2Rad(2)); // CONVERT -45 45 and 2 to Rads
     if(d<b){
       b = d;
       name = templates.get(i).name;
@@ -13,7 +14,7 @@ Result Recognize(ArrayList<int[]> pts, ArrayList<Unistroke> templates){
   Result res = new Result(name,score);
   return res;
 }
-double distAtBestAngle(ArrayList<int[]> pts, Unistroke template, double angA, double angB, double angDif){
+double distAtBestAngle(ArrayList<double[]> pts, Unistroke template, double angA, double angB, double angDif){
   double x1 = phi*angA + (1-phi)*angB;
   double f1 = distAtAngle(pts,template,x1);
   double x2 = (1-phi)*angA + phi*angB;
@@ -37,12 +38,12 @@ double distAtBestAngle(ArrayList<int[]> pts, Unistroke template, double angA, do
   return Math.min(f1,f2);
 }
 
-double distAtAngle(ArrayList<int[]> pts, Unistroke template, double angle){
-    ArrayList<int[]> newPts = rotateBy(pts,angle);
+double distAtAngle(ArrayList<double[]> pts, Unistroke template, double angle){
+    ArrayList<double[]> newPts = rotateBy(pts,angle); //<>//
     return pathDistance(newPts,template.unistrokes);
 }
 
-double pathDistance(ArrayList<int[]> p1, ArrayList<int[]> p2){
+double pathDistance(ArrayList<double[]> p1, ArrayList<double[]> p2){
    double d = 0;
    for(int i = 0; i < p1.size(); i++){
       d+= Distance(p1.get(i),p2.get(i));
@@ -57,4 +58,7 @@ class Result{
      name = n;
      score = s;
   }
+}
+double Deg2Rad(double d) {
+  return (d * Math.PI / 180.0);
 }
