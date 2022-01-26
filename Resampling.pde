@@ -12,7 +12,7 @@ ArrayList<double[]> Resample(ArrayList<double[]> pts, double n){
       np[0] = (double)(pts.get(i-1)[0] + ((interval-dist)/d)*(pts.get(i)[0]-pts.get(i-1)[0]));
       np[1] = (double)(pts.get(i-1)[1] + ((interval-dist)/d)*(pts.get(i)[1]-pts.get(i-1)[1]));
       newPts.add(np);
-      pts.set(i, np);
+      pts.add(i, np);
       dist=0;
     }
     else

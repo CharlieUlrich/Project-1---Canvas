@@ -222,8 +222,8 @@ void mouseDragged(){
    a[1] = mouseY;
    points.add(a);  
    }
-//   if(points.size()>1)
-//     checkAdj();
+   if(points.size()>1)
+     checkAdj();
 }
 
 void mouseReleased(){
