@@ -2,20 +2,22 @@
 //Each array is 1x2 and holds the x and y coordinates for each pixel drawn
 ArrayList<int[]> points = new ArrayList<int[]>();
 //Function called at the start of the progra, creates the canvas of size 1280x720
+
+class Unistroke {
+  String name;
+  ArrayList<int[]> unistrokes = new ArrayList<int[]>();
+  
+  public Unistroke(String n, ArrayList<int[]> unis) {
+    name = n;
+    unistrokes = unis;
+  }
+}
+
+ArrayList<Unistroke> templates = new ArrayList<Unistroke>();
+
 void setup(){
   size(250,250);
-  class Unistroke {
-    String name;
-    ArrayList<int[]> unistrokes = new ArrayList<int[]>();
-    
-    public Unistroke(String n, ArrayList<int[]> unis) {
-      name = n;
-      unistrokes = unis;
-    }
-  }
   
-  
-
   ArrayList<int[]> shape = new ArrayList<int[]>();
     shape.add(new int[] { 137,139}); shape.add(new int[] { 135,141}); shape.add(new int[] { 133,144});shape.add(new int[] { 132,146}); shape.add(new int[] { 130,149});shape.add(new int[] { 128,151});shape.add(new int[] { 126,155});shape.add(new int[] { 123,160});shape.add(new int[] { 120,166});shape.add(new int[] { 116,171});shape.add(new int[] { 112,177});
     shape.add(new int[] { 107,183});shape.add(new int[] { 102,188});shape.add(new int[] { 100,191});shape.add(new int[] { 95,195});shape.add(new int[] { 90,199});shape.add(new int[] { 86,203});shape.add(new int[] { 82,206});shape.add(new int[] { 80,209});shape.add(new int[] { 75,213});shape.add(new int[] { 73,213});shape.add(new int[] { 70,216});
@@ -159,6 +161,10 @@ void setup(){
     shape.add(new int[] { 145,215});shape.add(new int[] { 155,218});shape.add(new int[] { 164,219});shape.add(new int[] { 166,219});shape.add(new int[] { 177,219});shape.add(new int[] { 182,218});shape.add(new int[] { 192,216});shape.add(new int[] { 196,213});shape.add(new int[] { 199,212});shape.add(new int[] { 201,211});
     Unistroke pigtail = new Unistroke("pigtail", shape);
     shape.clear();
+    
+    
+    templates.add(triangle); templates.add(x); templates.add(rectangle); templates.add(circle); templates.add(check); templates.add(caret); templates.add(zigzag); templates.add(arrow); templates.add(lsb); templates.add(rsb); templates.add(v); templates.add(del); templates.add(lcb); templates.add(rcb); templates.add(star); templates.add(pigtail);
+    
 }
 
 //Draw is called each time the screen is refreshed, the default framerate is 60fps
@@ -167,7 +173,7 @@ void draw(){
   //Sets the background of the window / canvas to white
   background(255);
   //Calls the draw button function creating a button that clears the canvas
-  drawButton(10, 10, 80, 60, "Clear");
+  drawButton(10, 10, 40, 20, "Clear");
   //Changes the color being drawn to green
   fill(0,255,0);
   //Loop that goes through the arrayList of pixels drawing a circle with a 1 pixel
@@ -197,8 +203,8 @@ void mousePressed(){
    a[1] = mouseY;
    points.add(a);
    }
-   if(points.size()>2)
-     checkAdj();
+   //if(points.size()>2)
+    // checkAdj();
 }
 
 //This function is called when the mouse is dragged, it has the same functionality
@@ -211,7 +217,7 @@ void mouseDragged(){
    a[1] = mouseY;
    points.add(a);  
    }
-   if(points.size()>2)
+   if(points.size()>1)
      checkAdj();
 }
 
@@ -269,7 +275,7 @@ void drawButton(int x, int y, int wid, int hei, String text) {
   //This sets the mode for the text to be centered on the coordinates
   textAlign(CENTER, CENTER);
   //Sets the text size 
-  textSize(26);
+  textSize(13);
   //Sets the color of the text to black
   fill(0);
   //Draws the text to the window with the passed in text, x, y, width and height
