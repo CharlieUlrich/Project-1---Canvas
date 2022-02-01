@@ -3,10 +3,10 @@ import java.io.File;
 void readIn(File dir){
    if(dir.isDirectory())
      System.out.println("TRUE");
-   System.out.println(dir.getPath());
    for(File file: dir.listFiles()){
      if(!file.isDirectory()){
-         XML xml = loadXML(file.getPath());
+       print(file.getPath());
+         XML xml = loadXML(file.getPath()); //<>//
          XML[] childses = xml.getChildren("Point");
          ArrayList<double[]> shape = new ArrayList<double[]>();
          for(int i = 0; i < childses.length; i++){
@@ -15,14 +15,17 @@ void readIn(File dir){
             double[] point = new double[]{x,y};
             shape.add(point);
          }
-         //Getting the subject name
+         //Getting the subject name //<>//
          String sub = file.getPath();
-         Unistroke uni = new Unistroke(file.getName(),shape, Integer.parseInt(sub.substring(14,15))); 
+         int index = sub.indexOf("\\slow\\")-1;
+         Unistroke uni = new Unistroke(file.getName(),shape, index); 
          templates1.add(uni);
      }
      else{
-       if(file.getName()!="fast" || file.getName()!="medium")
+       if(!file.getName().equals("fast") && !file.getName().equals("medium") && !file.getName().equals("s01 (pilot)")){
+        System.out.println(file.getName());
         readIn(file); 
+       }
      }
    }
 }

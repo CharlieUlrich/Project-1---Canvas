@@ -21,7 +21,8 @@ void setup(){
   size(250,250);
   phi = 0.5 * (-1.0 + Math.sqrt(5.0));
   info = "Result: ";
-  File dir = new File("./data/xml_logs");
+  String path = dataPath("");
+  File dir = new File(path);
   readIn(dir);
     
 }
