@@ -17,13 +17,15 @@ void readIn(File dir){
          }
          //Getting the subject name //<>//
          String sub = file.getPath();
-         int index = sub.indexOf("\\slow\\")-1;
-         Unistroke uni = new Unistroke(file.getName(),shape, index); 
+         int index = Integer.parseInt(sub.substring(sub.indexOf("\\slow\\")-2, sub.indexOf("\\slow\\")));
+         String n = file.getName().substring(0,file.getName().indexOf(".xml"));
+         //System.out.println("Hello!!!!!!!" + index);
+         Unistroke uni = new Unistroke(n,shape, index); 
          templates1.add(uni);
      }
      else{
        if(!file.getName().equals("fast") && !file.getName().equals("medium") && !file.getName().equals("s01 (pilot)")){
-        System.out.println(file.getName());
+        //System.out.println(file.getName());
         readIn(file); 
        }
      }
