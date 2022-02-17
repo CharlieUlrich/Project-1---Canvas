@@ -2,7 +2,7 @@
 //Each array is 1x2 and holds the x and y coordinates for each pixel drawn
 ArrayList<double[]> points = new ArrayList<double[]>();
 ArrayList<String> xmlPaths = new ArrayList<String>();
-String[] gestures = {"arrow", "caret", "check", "circle", "delete_mark", "left_curly_brace", "left_sq_bracket", "pigtail", "question_mark", "rectangle", "right_curly_brace", "right_sq_bracket", "star", "triangle", "v", "x" };
+String[] gestures = {"arrow", "caret", "check", "circle", "delete_mark", "left_curly_brace", "left_sq_bracket", "pigtail", "zig_zag", "rectangle", "right_curly_brace", "right_sq_bracket", "star", "triangle", "v", "x" };
 class Unistroke {
   String name;
   ArrayList<double[]> unistrokes = new ArrayList<double[]>();
@@ -83,7 +83,7 @@ void mousePressed(){
      g = "Gesture Type: " + gestures[count];
    }
    else if (mouseX >190 && mouseX < 260 && mouseY > 10 && mouseY < 30) {
-     Unistroke store = new Unistroke(gestures[count]+str(sNum),points,4);
+     Unistroke store = new Unistroke(gestures[count]+str(sNum),points,6);
      xmlWriter(store);
      points.removeAll(points);
      if (sNum != 10) {
